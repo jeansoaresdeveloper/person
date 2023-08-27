@@ -1,5 +1,8 @@
 package com.api.person;
 
+import com.api.contact.Contact;
+import com.api.contact.ContactRepository;
+import com.api.contact.ContactService;
 import com.api.person.dto.PersonCreateDto;
 import com.api.person.dto.PersonDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,24 +15,33 @@ import java.util.List;
 @Service
 public class PersonService {
     @Autowired
-    private PersonRepository repository;
+    private PersonRepository personRepository;
+
+    @Autowired
+    private ContactService contactService;
 
     public Page<PersonDto> listPerson(Pageable pagination) {
-        return repository.findAll(pagination).map(PersonDto::new);
+        return personRepository.findAll(pagination).map(PersonDto::new);
     }
 
     public PersonDto listPersonById(Long id) {
-        Person person = repository.getReferenceById(id);
+        Person person = personRepository.getReferenceById(id);
         return new PersonDto(person);
     }
 
     public Person createPerson(PersonCreateDto data) {
         Person person = new Person(data);
-        repository.save(person);
+        personRepository.save(person);
+        contactService.createContact(person.getId(), data.contact());
         return person;
     }
 
     public Person getPersonByUpdate(Long id) {
-        return repository.getReferenceById(id);
+        return personRepository.getReferenceById(id);
+    }
+
+    public void deletePerson(Long personId) {
+        Person person = personRepository.getReferenceById(personId);
+        personRepository.delete(person);
     }
 }

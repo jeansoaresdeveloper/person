@@ -7,7 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.util.IdentityHashMap;
+import javax.lang.model.element.Name;
 
 @Entity
 @Table(name = "contact")
@@ -18,21 +18,21 @@ public class Contact {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Long person_id;
+    private Long personId;
     private String name;
     private String phone;
     private String email;
 
-    public Contact(ContactCreateDto data) {
-        this.person_id = data.person_id();
+    public Contact(Long personId, ContactCreateDto data) {
+        this.personId = personId;
         this.name = data.name();
         this.phone = data.phone();
         this.email = data.email();
     }
 
     public void updateInfo(ContactDto data) {
-        if (this.person_id != null) {
-            this.person_id = data.person_id();
+        if (this.personId != null) {
+            this.personId = data.personId();
         }
         if (this.name != null) {
             this.name = data.name();

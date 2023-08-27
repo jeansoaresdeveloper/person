@@ -19,6 +19,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Person {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -27,14 +28,13 @@ public class Person {
     @JsonFormat(pattern="yyyy-MM-dd")
     private LocalDate dateBirth;
     @OneToMany
-    @JoinColumn(name = "person_id")
+    @JoinColumn(name = "personId")
     private List<Contact> contacts;
 
     public Person(PersonCreateDto data) {
         this.name = data.name();
         this.cpf = data.cpf();
         this.dateBirth = data.dateBirth();
-        this.contacts.add(new Contact(data.contact()));
     }
 
     public void updateInfo(PersonDto data) {

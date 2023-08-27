@@ -4,6 +4,8 @@ import com.jeansoares.api.contact.dto.ContactDto;
 import com.jeansoares.api.person.Person;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -14,10 +16,6 @@ public class ContactService {
 
     @Autowired
     private ContactAdapter contactAdapter;
-
-    private ContactDto getContactDto(Contact contact) {
-        return contactAdapter.fromEntity(contact);
-    }
 
     public void deleteById(Long id) {
         Contact contact = findById(id);
@@ -35,12 +33,22 @@ public class ContactService {
         return contactRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Contato não encontrado"));
     }
 
-    public ContactDto create(ContactDto data, Person person) {
+    public Contact create(ContactDto data, Person person) {
         Contact contact = contactAdapter.fromDto(data);
         contact.setPerson(person);
-        contactRepository.save(contact);
-        data.setId(contact.getId());
-        return data;
+        return contactRepository.save(contact);
     }
 
+    public Page<ContactDto> getAll(Pageable pageable) {
+        return contactRepository.findAll(pageable).map(this::getContactDto);
+    }
+
+    private ContactDto getContactDto(Contact contact) {
+        return contactAdapter.fromEntity(contact);
+    }
+
+    public ContactDto getById(Long id) {
+        Contact contact = contactRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Contato não encontrado"));
+        return contactAdapter.fromEntity(contact);
+    }
 }

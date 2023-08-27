@@ -10,7 +10,6 @@ import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -41,7 +40,7 @@ public class PersonService {
 
         List<Contact> contacts = new ArrayList<>();
         for (ContactDto contactDto : data.getContacts()) {
-            contactService.create(contactDto, person);
+            contacts.add(contactService.create(contactDto, person));
         }
 
         person.setContacts(contacts);
@@ -79,7 +78,8 @@ public class PersonService {
     }
 
     public PersonDto getById(Long id) {
-        return personAdapter.fromEntity(findById(id));
+        Person person = personRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Pessoa não encontrada"));
+        return personAdapter.fromEntity(person);
     }
 
     private PersonDto getPersonDto(Person person) {
@@ -90,13 +90,14 @@ public class PersonService {
         return findById(id).getContacts().stream().map(contact -> contactAdapter.fromEntity(contact)).toList();
     }
 
-    public Person findById(Long id) {
-        return personRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Entidade não encontrada"));
-    }
-
     public PersonDto addContact(ContactDto data, Long id) {
         Person person = findById(id);
         contactService.create(data, person);
         return personAdapter.fromEntity(person);
     }
+
+    public Person findById(Long id) {
+        return personRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Entidade não encontrada"));
+    }
+
 }

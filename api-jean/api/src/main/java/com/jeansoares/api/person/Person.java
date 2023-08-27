@@ -1,7 +1,6 @@
 package com.jeansoares.api.person;
 
 import com.jeansoares.api.contact.Contact;
-import com.jeansoares.api.person.dto.PersonDto;
 import jakarta.persistence.*;
 import lombok.*;
 

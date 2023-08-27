@@ -2,6 +2,7 @@ package com.api.contact;
 
 import com.api.contact.dto.ContactCreateDto;
 import com.api.contact.dto.ContactDto;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -27,15 +28,8 @@ public class ContactController {
     }
 
     @Transactional
-    @PostMapping
-    public ResponseEntity<Contact> createContact(@RequestBody ContactCreateDto data) {
-        Contact contact = service.createContact(data);
-        return ResponseEntity.ok(contact);
-    }
-
-    @Transactional
     @PutMapping("/{id}")
-    public ResponseEntity<ContactDto> updateContact(@RequestBody ContactDto data, @PathVariable Long id) {
+    public ResponseEntity<ContactDto> updateContact(@RequestBody @Valid ContactDto data, @PathVariable Long id) {
         Contact contact = service.getContactForUpdate(id);
         contact.updateInfo(data);
         return ResponseEntity.ok(new ContactDto(contact));

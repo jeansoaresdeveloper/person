@@ -4,12 +4,12 @@ import com.api.contact.Contact;
 
 public record ContactDto(
         Long id,
-        Long person_id,
+        Long personId,
         String name,
         String phone,
         String email
 ) {
     public ContactDto(Contact contact) {
-        this(contact.getId(), contact.getPerson_id(), contact.getName(), contact.getPhone(), contact.getPhone());
+        this(contact.getId(), contact.getPersonId(), contact.getName(), contact.getPhone(), contact.getPhone());
     }
 }

@@ -34,4 +34,5 @@ public class ContactDto {
         this.phone = phone;
         this.email = email;
     }
+
 }
