@@ -1,0 +1,38 @@
+div.person {
+    margin-bottom: 10px;
+    width: 100%;
+    display: grid;
+    height: 40px;
+    grid-template-columns: 6fr 1fr 2fr 1fr;
+    align-items: center;
+}
+
+div.person span {
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid #c2c2c2;
+}
+
+div.person span.align-left {
+    padding: 0 10px;
+    justify-content: flex-start;
+}
+
+.actions {
+    height: 40px;
+    border-bottom: 1px solid #c2c2c2;
+    display: flex;
+    justify-content: space-around;
+}
+
+.actions button {
+    background-color: transparent;
+    border: 0;
+}
+
+.actions img {
+    fill: #c2c2c2;
+    width: 20px;
+}

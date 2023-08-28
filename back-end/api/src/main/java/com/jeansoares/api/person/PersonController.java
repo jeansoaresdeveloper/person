@@ -37,7 +37,7 @@ public class PersonController {
 
     @PostMapping
     public PersonDto create(@RequestBody @Valid PersonDto data) {
-        return personService.newPerson(data);
+        return personService.register(data);
     }
 
     @PostMapping("/{id}/contact")

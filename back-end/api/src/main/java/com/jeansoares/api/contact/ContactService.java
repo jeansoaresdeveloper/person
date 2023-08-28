@@ -56,6 +56,7 @@ public class ContactService {
         Contact contact = contactRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Contato não encontrado"));
         return contactAdapter.fromEntity(contact);
     }
+
     @Transactional
     public ContactDto update(ContactUpdateDto data, Long id) {
         Contact contact = findById(id);

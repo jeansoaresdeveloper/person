@@ -1,0 +1,18 @@
+<section class="container">
+    <div class="top">
+        <button routerLink="/create-person">adicionar pessoa</button>
+        <span>
+            <input type="text" placeholder="Nome pessoa">
+            <img src="../../../../assets/icons/iconPersonSearch.svg" alt="Icon person search">
+        </span>
+    </div>
+    <div class="top-person">
+        <span>Nome pessoa</span>
+        <span>CPF</span>
+        <span>Data de nascimento</span>
+        <span>Ações</span>
+    </div>
+    <div class="people" *ngFor="let person of listPeople">
+        <app-person [person]="person"></app-person>
+    </div>
+</section>

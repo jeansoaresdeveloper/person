@@ -34,7 +34,7 @@ public class PersonService {
     private ContactAdapter contactAdapter;
 
     @Transactional
-    public PersonDto newPerson(PersonDto data) {
+    public PersonDto register(PersonDto data) {
         Person person = personAdapter.fromDto(data);
 
         checkCpf(data.getCpf(), person);

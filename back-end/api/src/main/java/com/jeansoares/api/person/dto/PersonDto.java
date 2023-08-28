@@ -1,5 +1,6 @@
 package com.jeansoares.api.person.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.jeansoares.api.contact.dto.ContactDto;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
@@ -18,19 +19,24 @@ import java.util.List;
 public class PersonDto {
 
         @Setter
+        @JsonProperty("id")
         private Long id;
 
+        @JsonProperty("name")
         @NotBlank(message = "Insira um nome")
         private String name;
 
+        @JsonProperty("cpf")
         @NotBlank(message = "Insira um cpf")
         @CPF(message = "CPF inválido")
         private String cpf;
 
+        @JsonProperty("dateBirth")
         @NotNull(message = "Insira uma data de nascimento")
         @Past(message = "Data de nascimento não pode ser no futuro")
         LocalDate dateBirth;
 
+        @JsonProperty("contacts")
         @NotEmpty(message = "Informe ao menos um contato")
         List<ContactDto> contacts;
 

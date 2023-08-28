@@ -1,0 +1,28 @@
+header {
+    margin: 0 auto;
+    max-width: 1280px;
+    padding: 10px;
+    border-radius: 10px 10px 0 0;
+    background: rgb(80, 80, 80);
+    color: #4cb0eb;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+header img {
+    width: 100px;
+}
+
+h1 {
+    font-weight: 100;
+    margin-right: 30px;
+}   
+
+button {
+    background-color: #3f3f3f;
+    border-radius: 10px;
+    color: white;
+    padding: 15px 30px;
+    border: 0;
+}

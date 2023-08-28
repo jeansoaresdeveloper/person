@@ -1,0 +1,29 @@
+<section class="container">
+    <h1>Acionar contato</h1>
+    <form [formGroup]="form">
+        <div class="form">
+            <div class="contact-form">
+                <h3>Contato</h3>
+                <input type="text" placeholder="Informe o nome do contato" formControlName="nameContact">
+                <span class="alert-error"
+                    *ngIf="form.get('name')?.errors && form.get('name')?.touched">
+                    Informe o nome do contato
+                </span>
+                <input type="email" placeholder="Informe o e-mail" formControlName="email">
+                <span class="alert-error"
+                    *ngIf="form.get('email')?.errors && form.get('email')?.touched">
+                    E-mail inválido
+                </span>
+                <input type="string" placeholder="Digite o fone" formControlName="phone">
+                <span class="alert-error"
+                    *ngIf="form.get('phone')?.errors && form.get('phone')?.touched">
+                    Telefone inválido - (00) 00000-0000
+                </span>
+            </div>
+        </div>
+        <div class="actions">
+            <button (click)="cancel()">Cancelar</button>
+            <button (click)="send()" [disabled]="!form.valid" [ngClass]="formIsValid()" class="submit">Adicionar</button>
+        </div>
+    </form>
+</section>
