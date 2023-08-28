@@ -12,6 +12,7 @@ import { PersonComponent } from './components/person/person/person.component';
 import { ContactComponent } from './components/contact/contact/contact.component';
 import { RouterModule } from '@angular/router';
 import { CreateContactComponent } from './components/contact/create-contact/create-contact.component';
+import { DeletePersonComponent } from './components/person/delete-person/delete-person.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { CreateContactComponent } from './components/contact/create-contact/crea
     CreatePersonComponent,
     PersonComponent,
     ContactComponent,
-    CreateContactComponent
+    CreateContactComponent,
+    DeletePersonComponent
   ],
   imports: [
     BrowserModule,

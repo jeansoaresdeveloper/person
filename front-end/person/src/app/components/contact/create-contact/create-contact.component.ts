@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PersonService } from 'src/app/service/person/person.service';
 
@@ -15,7 +15,8 @@ export class CreateContactComponent implements OnInit {
     constructor(
         private service: PersonService,
         private router: Router,
-        private builder: FormBuilder
+        private builder: FormBuilder,
+        private route: ActivatedRoute
     ) {}
 
     ngOnInit(): void {
@@ -33,7 +34,10 @@ export class CreateContactComponent implements OnInit {
     }
 
     send() {
-        this.router.navigate(['/list-people']);
+        const id = this.route.snapshot.paramMap.get('id');
+        this.service.createContact(parseInt(id!), this.form.value).subscribe(() => {
+            this.router.navigate(['/list-people'])
+        });
     } 
 
     cancel() {

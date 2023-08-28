@@ -36,4 +36,10 @@ export class PersonService {
         return this.httpClient.post<Person>(this.API, person);
     }
 
+    createContact(id: number, contact: ContactCreate): Observable<Person>
+    {
+        const url = `${this.API}/${id}/contact`;
+        return this.httpClient.post<Person>(url, contact);
+    }
+
 }
