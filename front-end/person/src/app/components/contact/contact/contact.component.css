@@ -1,0 +1,39 @@
+div.contact {
+    color: rgb(23, 117, 146);
+    border-bottom: 1px solid rgb(23, 117, 146);
+    margin-top: 5px;
+    border-radius: 20px;
+    width: 100%;
+    height: 40px;
+    display: grid;
+    grid-template-columns: 6fr 1fr 2fr 1fr;
+    align-items: center;
+}
+
+div.contact span {
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+div.contact span.align-left {
+    padding: 0 20px;
+    justify-content: flex-start;
+}
+
+.actions {
+    height: 40px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.actions button {
+    background-color: transparent;
+    border: 0;
+}
+
+.actions img {
+    fill: #c2c2c2;
+    width: 20px;
+}

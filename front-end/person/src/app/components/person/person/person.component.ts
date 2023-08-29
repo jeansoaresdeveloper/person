@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Person } from './person';
+import { Contact } from '../../contact/contact/contact';
 
 @Component({
   selector: 'app-person',
@@ -7,6 +8,9 @@ import { Person } from './person';
   styleUrls: ['./person.component.css']
 })
 export class PersonComponent implements OnInit {
+
+    contactVisibility: Boolean = false;
+    imageEye: String = 'iconEyeClosed';
 
     @Input() person: Person = {
         id: 0,
@@ -20,8 +24,22 @@ export class PersonComponent implements OnInit {
     
     ngOnInit(): void {}
 
-    addContact() {
-        console.log(this.person.id);
+    changeContactVisibility(): void
+    {
+        this.contactVisibility = !this.contactVisibility;
+
+        if (this.contactVisibility) {
+            this.imageEye = 'iconEye';
+            return;
+        }
+
+        this.imageEye = 'iconEyeClosed';
+
+    }
+
+    getNumberOfContacts(): number
+    {
+        return this.person.contacts.length;
     }
 
 

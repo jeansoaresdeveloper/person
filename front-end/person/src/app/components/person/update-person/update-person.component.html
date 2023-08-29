@@ -1,0 +1,28 @@
+<section class="container">
+    <h1>Atualizar dados pessoa</h1>
+    <form [formGroup]="form">
+        <div class="form">
+            <div class="person-form">
+                <input type="text" placeholder="Informe o nome" formControlName="name">
+                <span class="alert-error"
+                    *ngIf="form.get('name')?.errors && form.get('name')?.touched">
+                    Informe o nome
+                </span>
+                <input type="date" placeholder="dateBirth" formControlName="dateBirth">
+                <span class="alert-error"
+                    *ngIf="form.get('dateBirth')?.errors && form.get('dateBirth')?.touched">
+                    Data de nascimento inválida
+                </span>
+                <input type="text" placeholder="Digite o CPF" formControlName="cpf">
+                <span class="alert-error"
+                    *ngIf="form.get('cpf')?.errors && form.get('cpf')?.touched">
+                    Cpf inválido - Informe 000.000.000-00
+                </span>
+            </div>
+        </div>
+        <div class="actions">
+            <button (click)="cancel()">Cancelar</button>
+            <button (click)="send()" [disabled]="!form.valid" [ngClass]="formIsValid()" class="submit">Atualizar</button>
+        </div>
+    </form>
+</section>

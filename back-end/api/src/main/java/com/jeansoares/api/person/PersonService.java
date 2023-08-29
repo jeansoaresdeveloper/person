@@ -54,8 +54,12 @@ public class PersonService {
         personRepository.deleteById(id);
     }
 
-    public Page<PersonDto> getAll(Pageable pageable) {
-        return personRepository.findAll(pageable).map(this::getPersonDto);
+    public Page<PersonDto> getAll(String name, Pageable pageable) {
+        if (name == null) {
+            return personRepository.findAll(pageable).map(this::getPersonDto);
+        }
+
+        return personRepository.findByNameContaining(name, pageable).map(this::getPersonDto);
     }
 
     @Transactional

@@ -13,6 +13,9 @@ import { ContactComponent } from './components/contact/contact/contact.component
 import { RouterModule } from '@angular/router';
 import { CreateContactComponent } from './components/contact/create-contact/create-contact.component';
 import { DeletePersonComponent } from './components/person/delete-person/delete-person.component';
+import { UpdatePersonComponent } from './components/person/update-person/update-person.component';
+import { DeleteContactComponent } from './components/contact/delete-contact/delete-contact.component';
+import { UpdateContactComponent } from './components/contact/update-contact/update-contact.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +26,10 @@ import { DeletePersonComponent } from './components/person/delete-person/delete-
     PersonComponent,
     ContactComponent,
     CreateContactComponent,
-    DeletePersonComponent
+    DeletePersonComponent,
+    UpdatePersonComponent,
+    DeleteContactComponent,
+    UpdateContactComponent
   ],
   imports: [
     BrowserModule,

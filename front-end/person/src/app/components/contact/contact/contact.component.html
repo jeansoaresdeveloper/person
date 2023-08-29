@@ -1,1 +1,9 @@
-<p>contact works!</p>
+<div class="contact">
+    <span class="align-left">{{ contact.name }}</span>
+    <span>{{ contact.email }}</span>
+    <span>{{ contact.phone }}</span>
+    <span class="actions">
+        <button class="edit" routerLink="/person/update-contact/{{ contact.id }}"><img src="../../../../assets/icons/iconEdit.svg" alt="Edit contact"></button>
+        <button class="edit" [disabled]="numberOfContacts < 2" routerLink="/person/delete-contact/{{ contact.id }}"><img src="../../../../assets/icons/iconDelete.svg" alt="Delete contact"></button>
+    </span>
+</div>

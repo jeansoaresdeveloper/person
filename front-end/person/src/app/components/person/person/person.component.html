@@ -4,8 +4,13 @@
     <span class="align-center">{{ person.dateBirth }}</span>
     <div class="actions">
         <button class="edit" routerLink="/person/create-contact/{{ person.id }}"><img src="../../../../assets/icons/contactAdd.svg" alt="Add contact"></button>
-        <button class="edit"><img src="../../../../assets/icons/iconEye.svg" alt="See contacts"></button>
-        <button class="edit"><img src="../../../../assets/icons/iconEdit.svg" alt="Edit person"></button>
-        <button class="edit"><img src="../../../../assets/icons/iconDelete.svg" alt="Delete person"></button>
+        <button class="edit" (click)="changeContactVisibility()"><img src="../../../../assets/icons/{{ imageEye }}.svg" alt="See contacts"></button>
+        <button class="edit" routerLink="/person/update-person/{{ person.id }}"><img src="../../../../assets/icons/iconEdit.svg" alt="Edit person"></button>
+        <button class="edit" routerLink="/person/delete-person/{{ person.id }}"><img src="../../../../assets/icons/iconDelete.svg" alt="Delete person"></button>
+    </div>
+</div>
+<div *ngIf="contactVisibility">
+    <div *ngFor="let contact of person.contacts">
+        <app-contact [contact]="contact" [numberOfContacts]="getNumberOfContacts()"></app-contact>
     </div>
 </div>

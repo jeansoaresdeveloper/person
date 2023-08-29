@@ -26,8 +26,10 @@ public class PersonController {
     private ContactService contactService;
 
     @GetMapping
-    public ResponseEntity<Page<PersonDto>> getAll(@PageableDefault(page = 0, size = 5, sort = "id", direction = Sort.Direction.ASC) Pageable pageable) {
-        return ResponseEntity.ok().body(personService.getAll(pageable));
+    public ResponseEntity<Page<PersonDto>> getAll(
+            @RequestParam(required = false) String name,
+            @PageableDefault(page = 0, size = 10, sort = "id", direction = Sort.Direction.ASC) Pageable pageable) {
+        return ResponseEntity.ok().body(personService.getAll(name, pageable));
     }
 
     @GetMapping("/{id}")

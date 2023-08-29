@@ -15,7 +15,7 @@ public class ContactController {
     @Autowired
     private ContactService contactService;
 
-    @GetMapping
+    @GetMapping()
     public ResponseEntity<Page<ContactDto>> getAll(Pageable pageable) {
         return ResponseEntity.ok().body(contactService.getAll(pageable));
     }

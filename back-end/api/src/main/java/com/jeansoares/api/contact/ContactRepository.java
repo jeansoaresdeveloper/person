@@ -1,5 +1,6 @@
 package com.jeansoares.api.contact;
 
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
@@ -12,5 +13,4 @@ public interface ContactRepository extends JpaRepository<Contact, Long> {
     List<Contact> findByPersonId(Long personId);
 
     Optional<Contact> findByEmail(String emailInput);
-
 }

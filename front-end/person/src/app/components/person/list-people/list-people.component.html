@@ -3,7 +3,10 @@
     <div class="top">
         <button routerLink="/create-person">adicionar pessoa</button>
         <span>
-            <input type="text" placeholder="Nome pessoa">
+            <input type="text" placeholder="Nome pessoa"
+            autofocus
+            [(ngModel)]="filter"
+            (keyup)="searchPerson()">
             <img src="../../../../assets/icons/iconPersonSearch.svg" alt="Icon person search">
         </span>
     </div>
@@ -13,7 +16,11 @@
         <span>Data de nascimento</span>
         <span>Ações</span>
     </div>
-    <div class="people" *ngFor="let person of listPeople">
+    <div class="people" *ngFor="let person of listPeople, let i = index">
         <app-person [person]="person"></app-person>
     </div>
 </section>
+<div class="pagination">
+    <button (click)="previousPage()"  [disabled]="currentPage == 0" class="{{ firstPage() }}" >Anterior</button>
+    <button (click)="nextPage()" [disabled]="currentPage + 1 == pages" class="{{ lastPage() }}">Próxima</button>
+</div>
